@@ -4,13 +4,16 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const Hero = () => {
- const [show,setShow] = useState(() => {
-    return JSON.parse(localStorage.getItem("showStatus")) || false;
-  });
-  const [firstTime, setFirstTime] = useState(() => {
-    return JSON.parse(localStorage.getItem("fistEnterTime")) || null;
-  });
- 
+  const [show, setShow] = useState(false);
+  const [firstTime, setFirstTime] = useState(null);
+
+  useEffect(() => {
+    const storedShowStatus = JSON.parse(localStorage.getItem("showStatus")) || false;
+    const storedFirstTime = JSON.parse(localStorage.getItem("fistEnterTime")) || null;
+
+    setShow(storedShowStatus);
+    setFirstTime(storedFirstTime);
+  }, []);
   
 
   const checkTime = () => {
